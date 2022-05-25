@@ -1,0 +1,1 @@
+/home/oj/ws_moveit/src/ur5_gripper_moveit_config/launch/demo_gazebo_pick_and_place_collision.launch
