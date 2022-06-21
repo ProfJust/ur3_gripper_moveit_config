@@ -29,6 +29,6 @@
         args="-urdf -param robot_description -model robot -x 0 -y 0 -z 1.21"  
         respawn="false" output="screen" />
 
-  <include file="$(find ur3_gripper_moveit_config)/launch/ros_controllers.launch"/>
+  <include file="$(find ur5_gripper_moveit_config)/launch/ros_controllers.launch"/>
 
 </launch>

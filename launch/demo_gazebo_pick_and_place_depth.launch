@@ -29,7 +29,7 @@
     <arg name="paused" value="$(arg paused)"/>
     <arg name="gazebo_gui" value="$(arg gazebo_gui)"/>
     <arg name="urdf_path" value="$(arg urdf)"/>
-    <arg name="gazebo_world_name" value="$(find emr22)/gazebo_worlds_emr22/simple_pick_and_place_collision"/>   
+    <arg name="gazebo_world_name" value="$(find emr22)/gazebo_worlds_emr22/simple_pick_and_place"/>   
   </include>
 
 
