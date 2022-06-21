@@ -1,10 +1,30 @@
 # The name of this file shouldn't be changed, or else the Setup Assistant won't detect it
+# https://ros-planning.github.io/moveit_tutorials/doc/perception_pipeline/perception_pipeline_tutorial.html?highlight=depth
 sensors:
-  - filtered_cloud_topic: filtered_cloud
-    max_range: 5.0
+  - sensor_plugin: occupancy_map_monitor/DepthImageOctomapUpdater
+    image_topic: /camera/depth/image_rect_raw 
+    queue_size: 5
+    near_clipping_plane_distance: 0.3        
+    # The maximum distance before lack of visibility.
+    far_clipping_plane_distance: 1.5
+    shadow_threshold: 0.2
+    # aufblasen des arms/Gripper , asu Octomap ausblenden
+    padding_scale: 4.0
+    # Octomap ausblenden um Arm/Gripper etc. in m
+    padding_offset: 0.08 #was o.03
     max_update_rate: 1.0
-    padding_offset: 0.1
-    padding_scale: 1.0
-    point_cloud_topic: /camera1/depth/points
-    point_subsample: 1
-    sensor_plugin: occupancy_map_monitor/PointCloudOctomapUpdater
+    filtered_cloud_topic: filtered_cloud
+  
+    
+
+
+
+
+#  - filtered_cloud_topic: filtered_cloud
+#    max_range: 5.0
+#    max_update_rate: 1.0
+#    padding_offset: 0.1
+#    padding_scale: 1.0
+#    point_cloud_topic: /camera1/depth/points
+#    point_subsample: 1
+#    sensor_plugin: occupancy_map_monitor/PointCloudOctomapUpdater
