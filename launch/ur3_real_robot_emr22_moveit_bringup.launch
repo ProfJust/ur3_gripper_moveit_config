@@ -1,0 +1,42 @@
+<!-- adpting fmauch ur5_moveit_planning_execution.launch
+  for our UR5e real roboto with gripper -->
+
+<!-- Für Gazebo => starte als oberste launchDatei 
+$ roslaunch ur5_gripper_moveit_config demo_gazebo_pick_and_place.launch
+
+Für Real Robot, ist dies die oberste Launch Datei
+usage
+$ roslaunch ur5_gripper_moveit_config ur5e_real_robot_emr22_moveit_bringup.launchh sim:=false limited:=true
+
+see https://www.youtube.com/watch?v=edHAzfYre7E 17min46
+-->
+
+<launch>
+  <arg name="sim" default="false" />
+  <arg name="limited" default="false"/>
+  <arg name="debug" default="false" />
+    
+  <!-- Remap follow_joint_trajectory 
+  <remap if="$(arg sim)" from="/follow_joint_trajectory" to="/arm_controller/follow_joint_trajectory"/> -->
+  
+  <!-- Launch moveit   fmauch Version
+  <include file="$(find ur5_moveit_config)/launch/move_group.launch">
+    <arg name="limited" default="$(arg limited)"/>
+    <arg name="debug" default="$(arg debug)" />
+  </include>-->
+
+<!-- Run the main MoveIt! executable without trajectory execution (we do not have controllers configured by default) -->
+  <include file="$(find ur3_gripper_moveit_config)/launch/move_group.launch">
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="fake_execution" value="false"/>
+    <arg name="info" value="true"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>  
+
+  <!-- Run Rviz and load the default config to see the state of the move_group node -->
+  <include file="$(find ur3_gripper_moveit_config)/launch/moveit_rviz.launch">
+    <arg name="rviz_config" value="$(find ur3_gripper_moveit_config)/launch/moveit.rviz"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+</launch>
